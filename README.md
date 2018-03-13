@@ -56,8 +56,7 @@ These metrics are automatically collected.
    * node.mem.heap.utilization (gauge)
    * node.mem.os.utilization (gauge)
    * node.cpu.utilization (gauge)
-   * Optional
-      * `process.env.MONITOR_ADVANCED === 'true'`
+   * Optional (`process.env.MONITOR_ADVANCED === 'true'`)
       * node.os.uptime (gauge)
       * node.mem.rss (gauge)
       * node.mem.heap.free (gauge)
