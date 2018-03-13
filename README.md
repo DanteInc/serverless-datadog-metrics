@@ -15,7 +15,7 @@ This library logs useful metrics from AWS Lambda functions, so that they can be 
 _Wrap the handler function._
 
 > ```
-> const monitor = require('serverless-data-metrics').monitor;
+> const monitor = require('serverless-datadog-metrics').monitor;
 >
 > exports.handler = monitor(
 >   function(event, context, callback) {
@@ -38,7 +38,7 @@ _Initialize some additional environment variables._
 4. Record custom metrics as needed:
 
 > ```
-> const metrics = require('serverless-data-metrics');
+> const metrics = require('serverless-datadog-metrics');
 >
 > metrics.count('custom.count', 1);
 > metrics.gauge('custom.gauge', 2);
