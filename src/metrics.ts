@@ -52,7 +52,7 @@ export const check = (key: string, value: number = 0, tags: { [key: string]: any
   log('check', key, value, tags);
 };
 
-export const error = (keyPrefix: string, err: any) => {
+export const error = (err: any, keyPrefix: string = 'aws.lambda.handler') => {
   logger.err(err);
   count(`${keyPrefix}.error.count`, 1, { type: (err instanceof Error) ? err.name : 'string' });
 };

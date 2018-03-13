@@ -82,7 +82,7 @@ describe('metrics.ts', () => {
     const log = sandbox.spy(logger, 'log');
     const err = sandbox.spy(logger, 'err');
 
-    metrics.error('my', new RangeError());
+    metrics.error(new RangeError(), 'my');
     expect(log.calledWith(TIMESTAMP_UNIX, 'count', 'my.error.count', 1, { type: 'RangeError', acct: 'dev', region: 'us-east-1', test: 'metrics' })).to.be.true;
     expect(err.called).to.be.true;
   });
@@ -91,8 +91,9 @@ describe('metrics.ts', () => {
     const log = sandbox.spy(logger, 'log');
     const err = sandbox.spy(logger, 'err');
 
-    metrics.error('my', 'string error');
-    expect(log.calledWith(TIMESTAMP_UNIX, 'count', 'my.error.count', 1, { type: 'string', acct: 'dev', region: 'us-east-1', test: 'metrics' })).to.be.true;
+    metrics.error('string error');
+    expect(log.calledWith(TIMESTAMP_UNIX, 'count', 'aws.lambda.handler.error.count', 1,
+                          { type: 'string', acct: 'dev', region: 'us-east-1', test: 'metrics' })).to.be.true;
     expect(err.called).to.be.true;
   });
 });

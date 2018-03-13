@@ -17,7 +17,7 @@ export const monitor = (handler: Function, tags:any = {}, options = { advanced: 
 
     return handler(event, context, (err, resp) => {
       if (err) {
-        metrics.error('aws.lambda.handler', err);
+        metrics.error(err, 'aws.lambda.handler');
         metrics.check('aws.lambda.check', 1); // warning
       } else {
         metrics.check('aws.lambda.check', 0); // ok

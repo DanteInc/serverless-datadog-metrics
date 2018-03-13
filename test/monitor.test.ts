@@ -70,7 +70,7 @@ describe('monitor.ts', () => {
 
     expect(histogram.calledWith('aws.lambda.handler')).to.be.true;
     expect(check.calledWith('aws.lambda.check', 1)).to.be.true;
-    expect(error.calledWith('aws.lambda.handler', 'error')).to.be.true;
+    expect(error.calledWith('error', 'aws.lambda.handler')).to.be.true;
     expect(start.calledWith({ advanced: true })).to.be.true;
     expect(stop.calledWith({ advanced: true })).to.be.true;
   });
