@@ -3,8 +3,7 @@ import * as logger from './logger';
 const debug = require('debug')('metrics');
 
 const globalTags = {
-  acct: process.env.ACCOUNT_NAME || 'dev',
-  // account: process.env.ACCOUNT_NAME || 'dev',
+  account: process.env.ACCOUNT_NAME || 'dev',
   region: process.env.AWS_REGION || 'us-east-1',
 };
 

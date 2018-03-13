@@ -2,13 +2,17 @@
 
 This library logs useful metrics from AWS Lambda functions, so that they can be accumulated via Datadog's AWS Lambda integration. See _Related Documents_ below.
 
-1. [Confilgure Datadog AWS Integration](https://docs.datadoghq.com/integrations/amazon_web_services)
+1. [Confilgure Datadog AWS Integration](https://docs.datadoghq.com/integrations/amazon_web_services/#setup)
+
+> TIP: Add an account tag to identify metrics per AWS account: `account:<human readable name>`
 
 2. Install library:
 
 > `npm install --save serverless-datadog-metrics`
 
 3. Integrate monitoring:
+
+_Wrap the handler function._
 
 > ```
 > const monitor = require('serverless-data-metrics').monitor;
@@ -21,6 +25,16 @@ This library logs useful metrics from AWS Lambda functions, so that they can be 
 > )
 > ```
 
+_Initialize some additional environment variables._
+
+> ```
+>  environment:
+>    ACCOUNT_NAME: ${opt:account}
+>    SERVERLESS_STAGE: ${opt:stage}
+>    SERVERLESS_PROJECT: ${self:service}
+>    MONITOR_ADVANCED: true
+> ```
+
 4. Record custom metrics as needed:
 
 > ```
@@ -31,7 +45,7 @@ This library logs useful metrics from AWS Lambda functions, so that they can be 
 > metrics.histogram('custom.histogram', 3);
 > metrics.check('custom.check', 0);
 > metrics.error(err);
-> 
+>
 > const timer = new metrics.Timer('custom.timer');
 > sleep(1);
 > timer.checkpoint('cp1');
